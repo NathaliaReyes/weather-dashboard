@@ -61,16 +61,16 @@ var getCityWeather = function(city) {
 
 
 var savedCities = JSON.parse(localStorage.getItem('cities')) || [];
-var cityListDiv = document.getElementById('short-cut')
+//var shortcutEl = document.getElementById('short-cut')
 for (let i = 0; i < savedCities.length; i++) {
     const btnEl = document.createElement('button')
     btnEl.textContent = savedCities[i]
     btnEl.onclick = favoriteCity;
-    cityListDiv.appendChild(btnEl)
+    shortcutEl.appendChild(btnEl)
 }
 
 function favoriteCity(event) {
-    mainContainerEl.innerHTML = '';
+    //mainContainerEl.innerHTML = '';
     let element = event.target.textContent;
     console.log(element)
     getCityWeather(element);
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Verifica que el nombre de la ciudad no esté vacío
             if (cityBtn) {
                 // Limpia el contenido anterior antes de hacer una nueva solicitud
-                cityInfoEl.innerHTML = '';
-                fiveDaysContainerEl.innerHTML = '';
+                /* cityContainerEl.innerHTML = '';
+                fiveDaysContainerEl.innerHTML = ''; */
 
                 // Haz una solicitud a la API con el nombre de la ciudad
                 getCityWeather(cityBtn);
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to display the five day weather forecast
 var displayFiveDayWeather = function(lat, lon) {
 
-    //fiveDaysContainerEl.innerHTML = '';
+    
     var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
 
     fetch(requestUrl)
@@ -163,7 +163,7 @@ var displayFiveDayWeather = function(lat, lon) {
     .then(function(data) {
         console.log(data);
         var fiveDayForecast = data.list;
-        //for (var i = 0; i < fiveDayForecast.length; i+=8) {
+        fiveDaysContainerEl.innerHTML = '';
         for (var i = 0; i < fiveDayForecast.length; i++) {
             var dayData = fiveDayForecast[i];
             var weatherTime = dayData.dt_txt.split(' ')[1].split(':')[0];
