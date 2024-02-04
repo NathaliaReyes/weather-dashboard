@@ -4,7 +4,7 @@ var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.getElementById('city');
 
 // Declaration of the variable to get the element of the city info
-var cityInfoEl = document.getElementById('city-info');
+//var cityInfoEl = document.getElementById('city-info');
 var cityContainerEl = document.getElementById('city-container');
 
 // define the variable of the weather of five days container that the user search for
@@ -16,10 +16,13 @@ var shortcutEl = document.getElementById('short-cut');
 // This variable stores the API key to make the requests to the OpenWeather API
 var apiKey = '4bba11dfee0efb4005da5f8d661387b5';
 
-
+var mainContainerEl = document.getElementById('main-container');
 
 // Function to get the current weather of the city
 var getCityWeather = function(city) {
+    // Clear the previous content
+    cityContainerEl.children[0].innerHTML = '';
+    fiveDaysContainerEl.innerHTML = '';
     if (!city) {
         console.log('City is required');
         return;
@@ -43,20 +46,13 @@ var getCityWeather = function(city) {
             var iconUrl = `http://openweathermap.org/img/w/${iconDay}.png`;
             var cityDetails = `
             <h1>${data.name} ${today}<span><img src="${iconUrl}"></span></h1>
+            <p>Temp: ${data.main.temp}°F</p>
+            <p>Wind: ${data.wind.speed} MPH</p>
+            <p>Humidity: ${data.main.humidity} %</p>
             `;
 
             cityContainerEl.children[0].innerHTML = cityDetails;
-
-            var p1 = document.createElement('p');
-            p1.textContent = `Temp: ${data.main.temp}`;
-            cityContainerEl.appendChild(p1);
-            var p2 = document.createElement('p');
-            p2.textContent = `Wind: ${data.wind.speed} MPH`;
-            cityContainerEl.appendChild(p2);
-            var p3 = document.createElement('p');
-            p3.textContent = `Humidity: ${data.main.humidity} %`;
-            cityContainerEl.appendChild(p3);
-            //cityContainerEl.innerHTML = '';
+            
         })
         .catch(function(error) {
             console.log('Error:', error);
@@ -74,9 +70,12 @@ for (let i = 0; i < savedCities.length; i++) {
 }
 
 function favoriteCity(event) {
+    mainContainerEl.innerHTML = '';
     let element = event.target.textContent;
     console.log(element)
-    getCityWeather(element)
+    getCityWeather(element);
+    
+    
 }
 
 var citiesArray = [];
@@ -95,7 +94,7 @@ var formSubmitHandler = function(event) {
         //citiesArray = JSON.parse(savedCities);
         citiesArray.push(city);
     }
-    citiesArray.push(city);
+    //citiesArray.push(city);
     localStorage.setItem('cities', JSON.stringify(citiesArray));
     console.log(citiesArray);
         
@@ -107,7 +106,7 @@ var formSubmitHandler = function(event) {
 }
 
 // Function to render the cities saved in the local storage
-var renderCities = function() {
+/* var renderCities = function() {
     var savedCities = localStorage.getItem('cities');
     var citiesArray = [];
     if (savedCities) {
@@ -120,7 +119,7 @@ var renderCities = function() {
         cityBtn.classList = 'btn btn-secondary';
         shortcutEl.appendChild(cityBtn);
     }
-}
+} */
 
 
 
