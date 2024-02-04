@@ -70,7 +70,8 @@ p {
 }
 
 .card-custom {
-    background: linear-gradient(to bottom, #b5ade0, rgb(127, 124, 124));
+    background: linear-gradient(to bottom, #9383ea, rgb(120, 113, 148));
+    margin-bottom: 2rem;
     
 }
 
