@@ -35,3 +35,21 @@ box-shadow: 2px 2px #38302e;
     border: 2px solid #6f6866;
     border-radius: 0.3rem;
 }
+
+#short-cut {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-custom {
+    flex: 1; /* Para que cada tarjeta ocupe el mismo espacio y distribuya el ancho disponible */
+    margin: 0 1%; /* Agrega un margen entre las tarjetas */
+    max-width: calc(18% - 2%); /* Ajusta el ancho máximo teniendo en cuenta el margen */
+}
+
+
+p {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
