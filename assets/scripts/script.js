@@ -120,11 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Verifica que el nombre de la ciudad no esté vacío
             if (cityBtn) {
-                // Limpia el contenido anterior antes de hacer una nueva solicitud
-                /* cityContainerEl.innerHTML = '';
-                fiveDaysContainerEl.innerHTML = ''; */
-
-                // Haz una solicitud a la API con el nombre de la ciudad
                 getCityWeather(cityBtn);
             } else {
                 console.log('City is required');
@@ -167,7 +162,7 @@ var displayFiveDayWeather = function(lat, lon) {
             var iconUrl = `http://openweathermap.org/img/w/${icon}.png`;
             
             var card = document.createElement('div');
-            card.classList = 'card border-0 col-md-2 col-sm-12';
+            card.classList = 'card border-0 col-12 col-md-2 card-custom';
             card.innerHTML = `
             <div class="card-body">
                 

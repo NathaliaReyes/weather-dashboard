@@ -29,7 +29,6 @@ box-shadow: 2px 2px #38302e;
 .form-input {
     display: block;
     width: 100%;
-    padding: 3%;
     margin: 5px 0;
     font-size: 1.2rem;
     border: 2px solid #6f6866;
@@ -41,11 +40,7 @@ box-shadow: 2px 2px #38302e;
     flex-direction: column;
 }
 
-.card-custom {
-    flex: 1; /* Para que cada tarjeta ocupe el mismo espacio y distribuya el ancho disponible */
-    margin: 0 1%; /* Agrega un margen entre las tarjetas */
-    max-width: calc(18% - 2%); /* Ajusta el ancho máximo teniendo en cuenta el margen */
-}
+
 
 
 p {
@@ -72,4 +67,19 @@ p {
     color: white;
 
     
+}
+
+.card-custom {
+    background: linear-gradient(to bottom, #b5ade0, rgb(127, 124, 124));
+    
+}
+
+@media (min-width: 768px) {
+    /* Tus estilos aquí */
+    .card-custom {
+        flex: 1; /* Para que cada tarjeta ocupe el mismo espacio y distribuya el ancho disponible */
+        margin: 0 1%; /* Agrega un margen entre las tarjetas */
+        /* Ajusta el ancho máximo teniendo en cuenta el margen */
+    
+    }
 }
