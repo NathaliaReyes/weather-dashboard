@@ -64,6 +64,7 @@ var savedCities = JSON.parse(localStorage.getItem('cities')) || [];
 //var shortcutEl = document.getElementById('short-cut')
 for (let i = 0; i < savedCities.length; i++) {
     const btnEl = document.createElement('button')
+    btnEl.classList = 'btn btn-secondary btn-block btn-city';
     btnEl.textContent = savedCities[i]
     btnEl.onclick = favoriteCity;
     shortcutEl.appendChild(btnEl)
@@ -104,24 +105,6 @@ var formSubmitHandler = function(event) {
 
     
 }
-
-// Function to render the cities saved in the local storage
-/* var renderCities = function() {
-    var savedCities = localStorage.getItem('cities');
-    var citiesArray = [];
-    if (savedCities) {
-        citiesArray = JSON.parse(savedCities);
-    }
-    for (var i = 0; i < citiesArray.length; i++) {
-        var city = citiesArray[i];
-        var cityBtn = document.createElement('button');
-        cityBtn.textContent = city;
-        cityBtn.classList = 'btn btn-secondary';
-        shortcutEl.appendChild(cityBtn);
-    }
-} */
-
-
 
 
 
@@ -164,6 +147,10 @@ var displayFiveDayWeather = function(lat, lon) {
         console.log(data);
         var fiveDayForecast = data.list;
         fiveDaysContainerEl.innerHTML = '';
+        var title = document.createElement('h3');
+        title.textContent = '5-Day Forecast:';
+        title.classList = 'col-12 mt-3';
+        fiveDaysContainerEl.appendChild(title);
         for (var i = 0; i < fiveDayForecast.length; i++) {
             var dayData = fiveDayForecast[i];
             var weatherTime = dayData.dt_txt.split(' ')[1].split(':')[0];
@@ -178,11 +165,12 @@ var displayFiveDayWeather = function(lat, lon) {
             var wind = dayData.wind.speed;
             var icon = dayData.weather[0].icon;
             var iconUrl = `http://openweathermap.org/img/w/${icon}.png`;
+            
             var card = document.createElement('div');
-            card.classList = 'card';
+            card.classList = 'card border-0 col-md-2 col-sm-12';
             card.innerHTML = `
             <div class="card-body">
-                <h1 class="pt-3 pb-3">5-Day Forecast</h1>
+                
                 <h5 class="card-title">${date}</h5>
                 <img src="${iconUrl}" alt="weather icon">
                 <p class="card-text">Temp: ${temp}°F</p>
@@ -192,6 +180,7 @@ var displayFiveDayWeather = function(lat, lon) {
             `;
 
             fiveDaysContainerEl.appendChild(card);
+
             }
         }
     });
