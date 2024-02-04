@@ -41,9 +41,6 @@ var getCityWeather = function(city) {
             console.log(iconDay);
             
             var iconUrl = `http://openweathermap.org/img/w/${iconDay}.png`;
-            //iconImg.setAttribute('src', iconUrl);
-            //iconEl.appendChild(h1El);
-            //iconEl.appendChild(iconImg);
             var cityDetails = `
             <h1>${data.name} ${today}<span><img src="${iconUrl}"></span></h1>
             `;
@@ -72,12 +69,12 @@ var cityListDiv = document.getElementById('short-cut')
 for (let i = 0; i < savedCities.length; i++) {
     const btnEl = document.createElement('button')
     btnEl.textContent = savedCities[i]
-    btnEl.onclick = x;
+    btnEl.onclick = favoriteCity;
     cityListDiv.appendChild(btnEl)
 }
 
-function x(e) {
-    let element = e.target.textContent;
+function favoriteCity(event) {
+    let element = event.target.textContent;
     console.log(element)
     getCityWeather(element)
 }
