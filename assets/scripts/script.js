@@ -86,7 +86,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     var city = cityInputEl.value.trim();
         if(city === '') {
-            alert("Please enter a city name");
+            Swal.fire("Please enter a city name!");
         } 
         if(city) {
             getCityWeather(city);
@@ -161,20 +161,22 @@ var displayFiveDayWeather = function(lat, lon) {
             var icon = dayData.weather[0].icon;
             var iconUrl = `http://openweathermap.org/img/w/${icon}.png`;
             
-            var card = document.createElement('div');
-            card.classList = 'card border-0 col-12 col-md-2 card-custom';
-            card.innerHTML = `
-            <div class="card-body">
-                
-                <h5 class="card-title">${date}</h5>
-                <img src="${iconUrl}" alt="weather icon">
-                <p class="card-text">Temp: ${temp}°F</p>
-                <p class="card-text">Humidity: ${humidity}%</p>
-                <p class="card-text">Wind: ${wind}MPH</p>
+            var container = document.createElement('div');
+            container.classList = 'card-custom col-12';
+            container.innerHTML = `
+            <div class="card h-100 text-white card-individual">
+                <div class="card-body p2">
+                    <h5 class="card-title">${date}</h5>
+                    <img src="${iconUrl}" alt="weather icon">
+                    <p class="card-text">Temp: ${temp} °F</p>
+                    <p class="card-text">Humidity: ${humidity} %</p>
+                    <p class="card-text">Wind: ${wind} MPH</p>
+                </div>
             </div>
             `;
 
-            fiveDaysContainerEl.appendChild(card);
+
+            fiveDaysContainerEl.appendChild(container);
 
             }
         }
