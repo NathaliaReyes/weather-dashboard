@@ -66,8 +66,11 @@ for (let i = 0; i < savedCities.length; i++) {
     const btnEl = document.createElement('button')
     btnEl.classList = 'btn btn-block btn-city';
     btnEl.textContent = savedCities[i]
-    btnEl.onclick = favoriteCity;
-    shortcutEl.appendChild(btnEl)
+    if(btnEl.textContent !== '') {
+        btnEl.onclick = favoriteCity;
+        shortcutEl.appendChild(btnEl);
+    }
+    
 }
 
 function favoriteCity(event) {
@@ -85,25 +88,21 @@ var formSubmitHandler = function(event) {
     // Prevent the normal form submission
     event.preventDefault();
     var city = cityInputEl.value.trim();
-        if(city === '') {
-            Swal.fire("Please enter a city name!");
-        } 
-        if(city) {
-            getCityWeather(city);
-        }
-    if (savedCities) {
-        //citiesArray = JSON.parse(savedCities);
+    if (city === '') {
+        Swal.fire("Please enter a city name!");
+    } else {
+        getCityWeather(city);
+        var btnEl = document.createElement('button');
+        btnEl.classList = 'btn btn-block btn-city';
+        btnEl.textContent = city;
+        btnEl.onclick = favoriteCity;
+        shortcutEl.appendChild(btnEl);
         citiesArray.push(city);
+        localStorage.setItem('cities', JSON.stringify(citiesArray));
+        console.log(citiesArray);
     }
-    //citiesArray.push(city);
-    localStorage.setItem('cities', JSON.stringify(citiesArray));
-    console.log(citiesArray);
-        
     // Clear the input value
     cityInputEl.value = '';
-
-
-    
 }
 
 
