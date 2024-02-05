@@ -45,7 +45,7 @@ var getCityWeather = function(city) {
             
             var iconUrl = `http://openweathermap.org/img/w/${iconDay}.png`;
             var cityDetails = `
-            <h1>${data.name} ${today}<span><img src="${iconUrl}"></span></h1>
+            <h2 class="h3-custom">${data.name} ${today}<span><img src="${iconUrl}"></span></h1>
             <p>Temp: ${data.main.temp}°F</p>
             <p>Wind: ${data.wind.speed} MPH</p>
             <p>Humidity: ${data.main.humidity} %</p>
@@ -64,7 +64,7 @@ var savedCities = JSON.parse(localStorage.getItem('cities')) || [];
 //var shortcutEl = document.getElementById('short-cut')
 for (let i = 0; i < savedCities.length; i++) {
     const btnEl = document.createElement('button')
-    btnEl.classList = 'btn btn-secondary btn-block btn-city';
+    btnEl.classList = 'btn btn-block btn-city';
     btnEl.textContent = savedCities[i]
     btnEl.onclick = favoriteCity;
     shortcutEl.appendChild(btnEl)
@@ -144,7 +144,7 @@ var displayFiveDayWeather = function(lat, lon) {
         fiveDaysContainerEl.innerHTML = '';
         var title = document.createElement('h3');
         title.textContent = '5-Day Forecast:';
-        title.classList = 'col-12 mt-3';
+        title.classList = 'col-12 mt-3 h3-custom';
         fiveDaysContainerEl.appendChild(title);
         for (var i = 0; i < fiveDayForecast.length; i++) {
             var dayData = fiveDayForecast[i];
